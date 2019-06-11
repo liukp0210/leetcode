@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"container/list"
+	"strings"
+)
 
 
 /**
@@ -49,8 +53,137 @@ func addDigits2(num int) int  {
 func main()  {
 	//fmt.Println(addDigits(89))
 
-	fmt.Println(isBgly(16));
+	//fmt.Println(isBgly(16));
+	//fmt.Println("hello world");
+	//a := []int{0,0,1,1,1,2,2,3,3,4}
+	//duplicates := removeDuplicates(a)
+	//fmt.Println(duplicates)
+
+	nums := []int{1,3,5,6};
+	insert2 := searchInsert2(nums, 7)
+	fmt.Println(insert2)
 }
+
+func searchInsert2(nums []int,target int) int  {
+	left := 0
+	right := len(nums) - 1
+	for left <= right {
+		middle := (left + right)>>1
+		if nums[middle] == target {
+			return middle
+		}else if nums[middle] > target {
+			right = middle -1
+		}else if nums[middle] < target{
+			left = middle + 1
+		}
+	}
+	return left
+}
+
+func searchInsert( nums []int, target int) int {
+
+	k := 0
+	for i := 0; i < len(nums) ;i++  {
+		if nums[i] == target {
+			return i
+		}
+		if nums[i]> target {
+			k++
+		}
+	}
+	return len(nums) -k
+}
+
+
+func strStr(haystack , needle string) int  {
+	if needle == "" {
+		return 0
+	}
+	return strings.Index(haystack, needle)
+}
+
+
+func removeElement(nums []int,val int) int  {
+	if len(nums) == 0 {
+		return  0
+	}
+	k := 0
+	for i := 0 ; i < len(nums) ; i++ {
+		if nums[i] != val {
+			nums[k] = nums[i]
+			k++;
+		}
+	}
+	return  k
+}
+
+func removeDuplicates2(nums []int) int {
+	if len(nums) == 0 {
+		return  0
+	}
+	k := 0
+	for i := 1; i< len(nums); i++ {
+		if nums[k] != nums[i]{
+			k++
+			nums[k] = nums[i]
+		}
+	}
+	return k+1;
+}
+func removeDuplicates(nums []int) int {
+	var l =list.New()
+	for k, _ := range nums {
+		i := nums[k]
+		back := l.Back()
+		if back != nil{
+			if (back.Value) != i  {
+				l.PushBack(i)
+			}
+
+		}else{
+			l.PushBack(i)
+		}
+	}
+	k := 0;
+	for i := l.Front(); i != nil ; i=i.Next()  {
+		i2 := (i.Value).(int)
+		nums[k] = i2;
+		fmt.Print(i2)
+		k++
+	}
+	fmt.Println()
+
+	return  l.Len();
+}
+
+func isValid(s string) bool {
+	if len(s) == 0 {
+		return true
+	}
+	l := list.New()
+	for e := range s {
+		if s[e] == '(' || s[e] == '{' || s[e] == '[' {
+			l.PushBack(s[e])
+		} else {
+			elem := l.Back()
+			if elem == nil {
+				return false
+			}
+			v := (elem.Value).(uint8)
+			if (v == '(' && s[e] == ')') || (v == '{' && s[e] == '}') || (v == '[' && s[e] == ']') {
+				l.Remove(elem)
+			} else {
+				return false
+			}
+		}
+	}
+	return l.Len() == 0
+}
+
+
+
+
+
 
 /**
 异或算法
