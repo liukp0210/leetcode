@@ -59,10 +59,132 @@ func main()  {
 	//duplicates := removeDuplicates(a)
 	//fmt.Println(duplicates)
 
-	nums := []int{1,3,5,6};
-	insert2 := searchInsert2(nums, 7)
-	fmt.Println(insert2)
+	//nums := []int{1,3,5,6}
+	//insert2 := searchInsert2(nums, 7)
+	//fmt.Println(insert2)
+	//palindrome := isPalindrome(121)
+	//fmt.Println(palindrome)
+
+	//toInt := romanToInt("MMMCMXCIX")
+	//fmt.Println(toInt)
+	strs := []string{"flower","flow","flight"}
+	prefix := longestCommonPrefix(strs)
+	fmt.Println(prefix)
 }
+
+
+	/**
+	 * 编写一个函数来查找字符串数组中的最长公共前缀。
+	 如果不存在公共前缀，返回空字符串 ""。
+	 示例 1:
+	 输入: ["flower","flow","flight"]
+	 输出: "fl"
+	 示例 2:
+	 输入: ["dog","racecar","car"]
+	 输出: ""
+	 解释: 输入不存在公共前缀。
+	 说明:
+	 所有输入只包含小写字母 a-z 。
+	 *
+	 */
+func longestCommonPrefix(strs []string) string {
+	if len(strs) == 0 {
+		return ""
+	}
+	s := strs[0]
+	commonPreFix := ""
+	flag := false
+	for index , value := range s {
+		for i := 1 ;i < len(strs) ; i++{
+			i2 := strs[i]
+			if len(strs[i]) > index{
+				i3 := i2[index]
+				if int32(i3) != value{
+					flag = true
+					break
+				}
+			}else{
+				flag = true
+				break
+			}
+
+		}
+		if flag {
+			break
+		}else{
+			commonPreFix += string(value)
+		}
+	}
+	return commonPreFix
+}
+
+
+
+
+
+
+
+//map.put('I',1);
+//map.put('V',5);
+//map.put('X',10);
+//map.put('L',50);
+//map.put('C',100);
+//map.put('D',500);
+//map.put('M',1000);
+func romanToInt(s string) int{
+	maps := make(map[rune]int)
+	maps['I'] = 1
+	maps['V'] = 5
+	maps['X'] = 10
+	maps['L'] = 50
+	maps['C'] = 100
+	maps['D'] = 500
+	maps['M'] = 1000
+	//j := 0
+	flag := false
+	nums := 0
+	for index,value := range s {
+
+		if flag {
+			flag = false
+			continue
+		}
+		i := maps[value]
+		j := 0
+		if index + 1 < len(s){
+			i2 := s[index+1]
+			j = maps[rune(i2)]
+		}
+		if  i < j {
+			nums += j - i
+			flag = true
+		}else{
+			nums += i
+		}
+
+
+	}
+
+
+	return nums
+}
+
+func isPalindrome(x int)  bool {
+	if x < 0 || x%10 ==0 && x!= 0{
+		return false
+	}
+	a := 0
+	for x > a{
+		a = (a * 10) + (x % 10)
+		x /= 10
+	}
+
+	if a == x || x == a / 10 {
+		return true
+	}
+	return false
+}
+
 
 func searchInsert2(nums []int,target int) int  {
 	left := 0
@@ -79,6 +201,7 @@ func searchInsert2(nums []int,target int) int  {
 	}
 	return left
 }
+
 
 func searchInsert( nums []int, target int) int {
 
