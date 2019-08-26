@@ -1,6 +1,4 @@
-package com.lkp.leetcode.recursion;
-
-import static javafx.scene.input.KeyCode.L;
+package com.lkp.leetcode.test;
 
 /**
  *@className Linked

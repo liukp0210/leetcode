@@ -1,4 +1,4 @@
-package com.lkp.leetcode.recursion;
+package com.lkp.leetcode.test;
 
 /**
  *@className RealizationStrStr

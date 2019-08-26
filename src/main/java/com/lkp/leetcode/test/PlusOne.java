@@ -1,4 +1,4 @@
-package com.lkp.leetcode.recursion;
+package com.lkp.leetcode.test;
 
 import java.util.ArrayList;
 import java.util.List;
