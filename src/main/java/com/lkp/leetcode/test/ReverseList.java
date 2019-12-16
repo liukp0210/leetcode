@@ -19,8 +19,8 @@ public class ReverseList {
 	 */
 	public static class ListNode{
 		int val;
-		ListNode next;
-		ListNode(int x){ this.val = x;}
+		public ListNode next;
+		public ListNode(int x){ this.val = x;}
 	}
 	
 	public static void main(String[] args) {
