@@ -15,7 +15,7 @@ public class NumJewelsInStones {
 		for (int i = 0; i < S.length(); i++) {
 			char c = S.charAt(i);
 			for (int j = 0; j < chars.length; j++) {
-				if (chars[i] == c){
+				if (chars[j] == c){
 					count++;
 				}
 			}
