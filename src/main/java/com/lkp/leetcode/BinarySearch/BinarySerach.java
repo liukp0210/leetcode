@@ -4,7 +4,7 @@ import javax.xml.bind.SchemaOutputResolver;
 
 /**
  *@className BinarySerach
- *@description TODO
+ *@description 704. 二分查找
  *@Auther 85291173@qq.com
  *@Date 2019/9/30 17:06
  *@Version
