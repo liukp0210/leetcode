@@ -2,7 +2,7 @@ package com.lkp.leetcode.BinarySearch;
 
 /**
  *@className FirstBadVersion
- *@description TODO
+ *@description 278. 第一个错误的版本
  *@Auther 85291173@qq.com
  *@Date 2019/8/28 14:28
  *@Version
@@ -51,6 +51,18 @@ public class FirstBadVersion {
 			}
 		}
 	
+		return  left;
+	}
+	public static int firstBadVersion2(int n) {
+		int left = 0,right = n;
+		while (left < right){
+			int mid = left + (right - left)/2;
+			if(!isBadVersion(mid)){
+				left = mid + 1;
+			}else{
+				right = mid;
+			}
+		}
 		return  left;
 	}
 	
