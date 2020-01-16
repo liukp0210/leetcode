@@ -49,7 +49,27 @@ public class MySqrt {
 		return (int) right;
 	}
 	
+	public static int mySqrt2(int x) {
+		if(x == 0 ){
+			return 0;
+		}
+		long left = 0 ;
+		//如果x = 1时 需要加1
+		long right = (x>>>1)+1;
+		while (left <= right){
+			long mid = (left+right)>>>1;
+			//使用long类型是为了保证 mid*mid没有超出int类型溢出
+			if(mid*mid == x){
+				return (int) mid;
+			}else if(mid*mid > x){
+				right = mid - 1;
+			}else{
+				left = mid + 1;
+			}
+		}
+		return (int) right;
+	}
 	public static void main(String[] args) {
-		System.out.println(mySqrt(100));
+		System.out.println(mySqrt2(2147395599));
 	}
 }
